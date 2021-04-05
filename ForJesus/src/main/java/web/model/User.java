@@ -7,16 +7,15 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+   @Column
     private long id;
-    @Column(name="name")
+    @Column
     private String name;
-    @Column(name="lastname")
+   @Column
     private String lastname;
-    @Column(name="email")
+    @Column
     private String email;
-    @Column(name="rank")
-    private String rank;
+
 
     public User() {
     }
@@ -25,7 +24,7 @@ public class User {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
-        this.rank = rank;
+
     }
 
     public long getId() {
@@ -60,13 +59,7 @@ public class User {
         this.email = email;
     }
 
-    public String getRank() {
-        return rank;
-    }
 
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
 
     @Override
     public String toString() {
@@ -75,7 +68,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
-                ", rank='" + rank + '\'' +
+
                 '}';
     }
 }

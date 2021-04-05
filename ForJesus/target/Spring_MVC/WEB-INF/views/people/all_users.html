@@ -13,7 +13,6 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>E-Mail</th>
-        <th>Rank</th>
     </tr>
     </thead>
 
@@ -24,7 +23,6 @@
             <td><input type="text" th:value="${user.name}" th:name="name" th:id="name"/></td>
             <td><input type="text" th:value="${user.lastname}" th:name="lastName" th:id="lastName"/></td>
             <td><input type="text" th:value="${user.email}" th:name="email" th:id="email"/></td>
-            <td><input type="text" th:value="${user.rank}" th:name="rank" th:id="rank"/></td>
             <td colspan="3">
                 <input type="hidden" name="id" id="id" th:value="${user.id}" />
                 <button type="submit" name="submit" value="value" class="link-button">Update</button>
@@ -36,44 +34,18 @@
                 <input type="hidden" name="name" th:value="${user.name}" />
                 <input type="hidden" name="lastname" th:value="${user.lastname}" />
                 <input type="hidden" name="email" th:value="${user.email}" />
-                <input type="hidden" name="rank" th:value="${user.rank}" />
                 <button type="submit">Delete</button>
             </form>
         </td>
     </tr>
     </tbody>
 </table>
-<h2>Add New User</h2>
 <br/>
-<form action="#" th:action="@{/users}" th:object="${user}" method="post" >
-    <table>
-        <tr>
-            <td>First Name</td>
-            <td><label>
-                <input type="text" th:field="*{name}" />
-            </label></td>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><label>
-                <input type="text" th:field="*{lastname}" />
-            </label></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><label>
-                <input type="text" th:field="*{email}" />
-            </label></td>
-        </tr> <tr>
-            <td>Rank</td>
-            <td><label>
-                <input type="text" th:field="*{rank}" />
-            </label></td>
-        </tr>
-        <tr>
-            <td colspan="3"><input type="submit" value="Add User"/></td>
-        </tr>
-    </table>
+<form>
+<a href="@{/people/add_users}">Add New User</a>
+<!--    <tr>-->
+<!--        <td colspan="3"><input type="submit" value="Add User"/></td>-->
+<!--    </tr>-->
 </form>
 </body>
 </html>
