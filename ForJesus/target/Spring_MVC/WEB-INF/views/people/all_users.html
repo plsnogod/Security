@@ -1,51 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Users</title>
+    <meta charset="UTF-8">
+    <title>Crud</title>
 </head>
 <body>
-<h2>Users</h2>
-<table border="1">
+<h2> Table All Users </h2>
+</body>
+<table border="2">
     <thead>
     <tr>
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>E-Mail</th>
+        <th>E-mail</th>
     </tr>
     </thead>
-
     <tbody>
-    <tr th:each="user : ${user}">
-        <form action="#" th:action="@{/users/update}" th:object="${user}" method="post" >
-            <td th:utext="${user.id}">Id</td>
-            <td><input type="text" th:value="${user.name}" th:name="name" th:id="name"/></td>
-            <td><input type="text" th:value="${user.lastname}" th:name="lastName" th:id="lastName"/></td>
-            <td><input type="text" th:value="${user.email}" th:name="email" th:id="email"/></td>
-            <td colspan="3">
-                <input type="hidden" name="id" id="id" th:value="${user.id}" />
-                <button type="submit" name="submit" value="value" class="link-button">Update</button>
-            </td>
-        </form>
-        <td colspan="3">
-            <form th:action="@{/users/delete}" th:object="${user}" method="post">
-                <input type="hidden" name="id" th:value="${user.id}" />
-                <input type="hidden" name="name" th:value="${user.name}" />
-                <input type="hidden" name="lastname" th:value="${user.lastname}" />
-                <input type="hidden" name="email" th:value="${user.email}" />
-                <button type="submit">Delete</button>
-            </form>
+    <tr th:each="user : ${all_us}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastname}"></td>
+        <td th:text="${user.email}"></td>
+        <td colspan="2">
+            <a th:href="@{/people/update_user{id}}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>
+
+<!--                <button type="submit" name="submit" value="value" class="link-button">Update</button>-->
+                <button type="submit" name="submit" value="value" class="link-button">Delete</button>
+
         </td>
+
     </tr>
+
     </tbody>
+
+
 </table>
-<br/>
-<form>
-<a href="@{/people/add_users}">Add New User</a>
-<!--    <tr>-->
-<!--        <td colspan="3"><input type="submit" value="Add User"/></td>-->
-<!--    </tr>-->
-</form>
-</body>
+<a th:href="@{/people/add_user}"><button type="submit" name="submit" value="value" class="link-button">Add new user</button></a>
+<!--<a th:href="@{/people/update_user}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>-->
+<!--<form action="#" th:action="@{/people/add_user.html}" th:object="{user}" method="post">-->
+<!--    <button type="submit" name="submit" value="value" class="link-button">Add New User</button>-->
+<!--</form>-->
 </html>
