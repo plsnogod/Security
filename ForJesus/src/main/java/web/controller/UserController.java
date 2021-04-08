@@ -4,6 +4,7 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
@@ -43,18 +44,19 @@ public class UserController {
     }
 
     @PostMapping(value = "/people/update_user/{id}")
-    public String updateUser(@ModelAttribute("upd_user") Model model, User user) {
+    public String updateUser(@ModelAttribute("upd_user") ModelMap model, User user) {
 
         userService.updateUser(user);
        model.addAttribute("upd_user", userService.showAllUsers());
-        return "people/all_users";
+        return "redirect:/";
 
     }
 
     @PostMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
-        return "redirect:/people/all_users";
+        return "people/all_users";
     }
+
 
 }
