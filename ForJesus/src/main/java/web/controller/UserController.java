@@ -4,7 +4,6 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
@@ -37,9 +36,9 @@ public class UserController {
 
     }
 
-    @GetMapping("/people/update_user")
-    public String getUserFormUpdate(@PathVariable("id") long id, Model model) {
-        model.addAttribute("update_user", userService.getuserById(id));
+    @GetMapping("/people/update_user/{id}")
+    public String getUserFormUpdate(Model model,@PathVariable("id") long id) {
+        model.addAttribute("upd_user", userService.getuserById(id));
         return "people/update_user";
     }
 
@@ -47,15 +46,14 @@ public class UserController {
     public String updateUser(@ModelAttribute("upd_user") Model model, User user) {
 
         userService.updateUser(user);
-        model.addAttribute("update_users", userService.showAllUsers());
-        return "redirect:/";
+       model.addAttribute("upd_user", userService.showAllUsers());
+        return "people/all_users";
 
     }
 
-    @PostMapping(value = "/people/all_users")
-    public String deleteUser(@ModelAttribute User user, Model model) {
-        userService.deleteUser(user.getId());
-        model.addAttribute("users", userService.showAllUsers());
+    @PostMapping(value = "/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteUser(id);
         return "redirect:/people/all_users";
     }
 

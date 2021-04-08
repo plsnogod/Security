@@ -18,27 +18,16 @@
     </thead>
     <tbody>
     <tr th:each="user : ${all_us}">
-        <td th:text="${user.id}"></td>
+        <td th:text="${user.getId()}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.lastname}"></td>
         <td th:text="${user.email}"></td>
         <td colspan="2">
-            <a th:href="@{/people/update_user{id}}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>
-
-<!--                <button type="submit" name="submit" value="value" class="link-button">Update</button>-->
-                <button type="submit" name="submit" value="value" class="link-button">Delete</button>
-
+            <a href="#" th:href="@{/people/update_user/{id} (id=${user.id})}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>
+            <a href="#" th:href="@{/people/delete/{id} (id=${user.id})}"><button type="submit" name="submit" value="value" class="link-button">Delete</button></a>
         </td>
-
     </tr>
-
     </tbody>
-
-
 </table>
 <a th:href="@{/people/add_user}"><button type="submit" name="submit" value="value" class="link-button">Add new user</button></a>
-<!--<a th:href="@{/people/update_user}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>-->
-<!--<form action="#" th:action="@{/people/add_user.html}" th:object="{user}" method="post">-->
-<!--    <button type="submit" name="submit" value="value" class="link-button">Add New User</button>-->
-<!--</form>-->
 </html>
