@@ -11,7 +11,7 @@ import web.service.UserService;
 
 
 @Controller
-
+@RequestMapping
 public class UserController {
     @Autowired
     private UserService userService;
@@ -39,7 +39,7 @@ public class UserController {
 
     @GetMapping("/people/update_user/{id}")
     public String getUserFormUpdate(Model model,@PathVariable("id") long id) {
-        model.addAttribute("upd_user", userService.getuserById(id));
+        model.addAttribute("upd_user", userService.getUserById(id));
         return "people/update_user";
     }
 
