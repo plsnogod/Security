@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/ForJesus/src/webapp/WEB-INF/views/people/add_users.html" value="file://$PROJECT_DIR$/ForJesus/src/webapp/WEB-INF/views/people" />
+        <entry key="file://$PROJECT_DIR$/ForJesus/src/webapp/WEB-INF/views/people/info_user.html" value="file://$PROJECT_DIR$/ForJesus/src/webapp/WEB-INF/views/people" />
       </map>
     </option>
   </component>

@@ -10,7 +10,7 @@
 <br/>
 
 
-<form method="POST" th:action="@{/people/add_user}" th:object="${new_user}" >
+<form method="POST" th:action="@{/admin/add_user}" th:object="${new_user}" >
     <table>
         <tr>
             <td>First Name</td>
@@ -30,6 +30,18 @@
             <td>
                 <input type="text" name="email" />
            </td>
+        </tr>
+        <tr>
+            <td>Login</td>
+            <td>
+                <input type="text" name="login" />
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="text" name="password" />
+            </td>
         </tr>
 
         <tr>
