@@ -7,14 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
+import web.service.RoleService;
 import web.service.UserService;
 
-import java.security.Principal;
 
 
 @Controller
 @RequestMapping("/")
 public class UserController {
+    @Autowired
+    private RoleService roleService;
+
     @Autowired
     private UserService userService;
 

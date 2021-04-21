@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -110,7 +109,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return null;
+        return getSetRoles();
     }
 
     @Override
@@ -140,4 +139,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
 }

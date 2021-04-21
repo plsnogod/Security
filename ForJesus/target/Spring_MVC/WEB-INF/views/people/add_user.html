@@ -10,7 +10,7 @@
 <br/>
 
 
-<form method="POST" th:action="@{/people/add_user}" th:object="${new_user}" >
+<form method="POST" th:action="@{/admin/add}" th:object="${new_user}" >
     <table>
         <tr>
             <td>First Name</td>
@@ -31,11 +31,31 @@
                 <input type="text" name="email" />
            </td>
         </tr>
+        <tr>
+            <td>Login</td>
+            <td>
+                <input type="text" name="login" />
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="text" name="password" />
+            </td>
+        </tr>
+        <tr>
+            <td> Role Admin?</td>
+<!--            <td>-->
+<!--                <input type=checkbox id=adminId name=setRoles[] value="ROLE_ADMIN">-->
+<!--                <label for="adminId"></label>-->
+<!--            </td>-->
+        </tr>
 
         <tr>
             <td colspan="3"> <input type="submit" value="Save User"/></td>
         </tr>
     </table>
+
 </form>
 </body>
 </html>
