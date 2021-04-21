@@ -26,7 +26,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> showAllUsers() {
         TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
-
         return query.getResultList();
 
 
