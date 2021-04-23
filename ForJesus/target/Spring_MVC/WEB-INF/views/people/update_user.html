@@ -10,7 +10,7 @@
 <br/>
 
 
-<form method="POST" th:action="@{/people/update_user/{id} (id=*{id})}" th:object="${upd_user}" >
+<form method="POST" th:action="@{/admin/edit/{id} (id=*{id})}" th:object="${upd_user}" >
     <table>
         <tr>
             <td>First Name</td>
@@ -31,7 +31,30 @@
                 <input type="text" name="email" th:field="*{email}">
             </td>
         </tr>
+        <tr>
+            <td>Login</td>
+            <td>
+                <input type="text" name="email" th:field="*{login}">
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="text" name="email" th:field="*{password}">
+            </td>
+        </tr>
+        <tr>
+            <td> Role </td>
+        <td>
+            <th:block th:each="role : ${list_roles}">
+                <input th:checked="${#lists.contains(updateUser.roles,list_roles)}" name="newRole"
+                       th:value="${role.getNameRoles()}" type="checkbox"/>
+                <label th:text="${role.getNameRoles()}"></label>
+            </th:block>
+        </td>
+        </tr>
     </table>
+
     <td colspan="3"> <input type="submit" value="Ok"> </td>
 </form>
 </body>
