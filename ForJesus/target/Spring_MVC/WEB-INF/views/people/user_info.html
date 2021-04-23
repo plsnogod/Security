@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>User Info</title>
@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <tr>
-        <td th:each="user: ${inf_user}">
+<!--        th:each="user: ${inf_user}">-->
         <td th:text="${user.getId()}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.lastname}"></td>
