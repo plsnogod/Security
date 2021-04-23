@@ -31,11 +31,41 @@ public class AdminController {
         return "all_users";
     }
 
+    @GetMapping("/add_user")
+    public String getUserForm() {
+        return "add_user";
+    }
+
+    @PostMapping("/add")
+    public String saveUser(@ModelAttribute("new_user") User user) {
+        userService.addUser(user);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String getUserFormUpdate(Model model, @PathVariable("id") long id) {
+        model.addAttribute("upd_user", userService.getUserById(id));
+        return "update_user";
+    }
+
+    @PostMapping(value = "/edit/{id}")
+    public String updateUser(@ModelAttribute("upd_user") ModelMap model, User user) {
+        userService.updateUser(user);
+        model.addAttribute("upd_user", userService.showAllUsers());
+        return "redirect:/admin";
+
+    }
+    @GetMapping(value = "/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteUser(id);
+        return "redirect:/admin";
+    }
+
 
     private Set<Role> methodRolei(String[] array) {
         HashSet<Role> hashSet = new HashSet<>();
-        for (int i = 0; i< array.length; i++){
-            hashSet.add(roleService.getRole( array [i]));
+        for (int i = 0; i < array.length; i++) {
+            hashSet.add(roleService.getRole(array[i]));
         }
         return hashSet;
     }
