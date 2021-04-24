@@ -5,6 +5,7 @@
     <title>Users</title>
 </head>
 <body>
+<div align="center">
 </table>
 <h2>Add New User</h2>
 <br/>
@@ -44,11 +45,13 @@
             </td>
         </tr>
         <tr>
-            <td> Role Admin?</td>
-<!--            <td>-->
-<!--                <input type=checkbox id=adminId name=setRoles[] value="ROLE_ADMIN">-->
-<!--                <label for="adminId"></label>-->
-<!--            </td>-->
+            <td>
+                <th:block th:each="roles : ${listRole}">
+                    <br>
+                    <input type="checkbox" name="newRole" th:value="${roles.getNameRoles()}" th:checked="${roles.getNameRoles() == 'ROLE_USER'}"/>
+                    <label th:text="${roles.getNameRoles()}"></label>
+                </th:block>
+            </td>
         </tr>
 
         <tr>
@@ -57,5 +60,6 @@
     </table>
 
 </form>
+</div>
 </body>
 </html>

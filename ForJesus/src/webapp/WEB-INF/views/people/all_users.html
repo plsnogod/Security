@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Crud</title>
 </head>
-<body>
 <div align="center">
+<body>
 <h2> Table All Users </h2>
 </body>
 <table border="2">
@@ -28,17 +28,24 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.login}"></td>
         <td th:text="${user.password}"></td>
-        <td th:each="role : ${user.getSetRoles()}">
-            <span th:text="${role.getNameRoles()}"></span>
-        </td>
+        <td>
+                <p th:each="userRole : ${user.setRoles}">
+            <span th:text="${userRole.getNameRoles()}">role</span>
+                </p>
         </td>
         <td colspan="2">
-            <a href="#" th:href="@{/admin/update_user/{id} (id=${user.id})}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>
+            <a href="#" th:href="@{/admin/edit/{id} (id=${user.id})}"><button type="submit" name="submit" value="value" class="link-button">Update</button></a>
             <a href="#" th:href="@{/admin/delete/{id} (id=${user.id})}"><button type="submit" name="submit" value="value" class="link-button">Delete</button></a>
         </td>
     </tr>
     </tbody>
 </table>
 <a th:href="@{/admin/add_user}"><button type="submit" name="submit" value="value" class="link-button">Add new user</button></a>
+    <form action="/user/" method="get">
+        <input type="submit" value="Your Page">
+    </form>
+    <form action="/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
 </div>
 </html>

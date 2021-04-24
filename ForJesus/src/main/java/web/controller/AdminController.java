@@ -31,13 +31,18 @@ public class AdminController {
         return "all_users";
     }
 
+
     @GetMapping("/add_user")
-    public String getUserForm() {
+    public String getUserForm(Model model) {
+
+        model.addAttribute("listRole", roleService.list_roles());
         return "add_user";
     }
 
     @PostMapping("/add")
-    public String saveUser(@ModelAttribute("new_user") User user) {
+    public String saveUser(@ModelAttribute("new_user") User user,
+                           @RequestParam(value = "newRole", required = false) String[] role) {
+        user.setSetRoles(getAddRole(role));
         userService.addUser(user);
         return "redirect:/admin";
     }
@@ -45,16 +50,19 @@ public class AdminController {
     @GetMapping("/edit/{id}")
     public String getUserFormUpdate(Model model, @PathVariable("id") long id) {
         model.addAttribute("upd_user", userService.getUserById(id));
+        model.addAttribute("list_roles", roleService.list_roles());
         return "update_user";
     }
 
     @PostMapping(value = "/edit/{id}")
-    public String updateUser(@ModelAttribute("upd_user") ModelMap model, User user) {
+    public String updateUser(@ModelAttribute("upd_user") User user,
+                             @RequestParam(value = "newRole", required = false) String[] role) {
+        user.setSetRoles(getAddRole(role));
         userService.updateUser(user);
-        model.addAttribute("upd_user", userService.showAllUsers());
         return "redirect:/admin";
 
     }
+
     @GetMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
@@ -62,10 +70,10 @@ public class AdminController {
     }
 
 
-    private Set<Role> methodRolei(String[] array) {
+    private Set<Role> getAddRole(String[] array) {
         HashSet<Role> hashSet = new HashSet<>();
         for (int i = 0; i < array.length; i++) {
-            hashSet.add(roleService.getRole(array[i]));
+            hashSet.add(roleService.getRoleByName(array[i]));
         }
         return hashSet;
     }

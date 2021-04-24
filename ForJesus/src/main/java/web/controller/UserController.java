@@ -4,19 +4,15 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import web.model.User;
-import web.service.RoleService;
 import web.service.UserService;
 
+import java.security.Principal;
 
 
 @Controller
 @RequestMapping("/")
 public class UserController {
-    @Autowired
-    private RoleService roleService;
 
     @Autowired
     private UserService userService;
@@ -26,11 +22,12 @@ public class UserController {
         return "home_page";
     }
 
+    @GetMapping("/user")
+    public String clickMe(Model model, Principal principal) {
+        model.addAttribute("oneUser", userService.getUserByName(principal.getName()));
+        return "show_user";
+    }
 }
 
 
-//    @GetMapping
-//    public String getHomePageForAnonim(){
-//
-//    }
 
