@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> showAllUsers() {
-        TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
+        TypedQuery<User> query = entityManager.createQuery("select u from User u join fetch u.setRoles", User.class);
         return query.getResultList();
 
 
@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(long id) {
-        return entityManager.createQuery("select u from User u  " + " where u.id =?1", User.class)
+        return entityManager.createQuery("select u from User u JOIN FETCH u.setRoles   where u.id =?1", User.class)
                 .setParameter(1, id)
                 .getSingleResult();
 
@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByName(String name) {
-        return entityManager.createQuery("select u from User u  " + " where u.name =?1", User.class)
+        return entityManager.createQuery("select u from User u JOIN fetch u.setRoles where u.name =?1", User.class)
                 .setParameter(1, name)
                 .getSingleResult();
     }
